@@ -1,0 +1,31 @@
+version: '3.4'
+services:
+  emu_db:
+    container_name: mama_db
+    image: "postgres:13"
+    environment:
+      POSTGRES_DB: aubb
+      POSTGRES_USER: aubb
+      POSTGRES_PASSWORD: bauvpasswdrdd
+    ports:
+      - "5433:5433"
+    volumes:
+      - data:/var/lib/postgresql/data
+  emu:
+    container_name: mama_db
+    image: "mama_db:latest"
+    ports:
+      - "443:443"
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - uploads:/home/mama_db/uploads
+    depends_on:
+      - mama_db
+    links:
+      - mama_db
+volumes:
+  data:
+  uploads:
+
+//TEST FILE FÜR SCAN
